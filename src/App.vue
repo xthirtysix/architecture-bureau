@@ -42,7 +42,7 @@ body {
 }
 
 #header {
-  grid-area: "header";
+  grid-area: header;
   box-sizing: border-box;
   position: fixed;
   top: 0;
@@ -65,7 +65,6 @@ body {
   display: grid;
   grid-template-rows: min-content;
   grid-row-gap: 1rem;
-  align-self: unsafe-center;
   margin: 0 auto;
   padding: 0;
   text-align: center;
@@ -110,18 +109,17 @@ body {
 }
 
 #content {
-  grid-area: "content";
+  grid-area: content;
   display: flex;
   justify-content: center;
-  width: calc(100vw - 15rem);
-  margin-left: 15rem;
+  width: calc(100vw - (100vw - 100%));
 }
 
 @media (max-width: $mobile) {
   #app {
     grid-template-rows: min-content 1fr;
     grid-template-columns: unset;
-    grid-template-areas: "nav" "content";
+    grid-template-areas: "header" "nav" "content";
   }
 
   #header {

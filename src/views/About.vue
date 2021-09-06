@@ -106,6 +106,7 @@ export default {
 .picture-container {
   grid-area: picture;
   height: fit-content;
+  max-width: 490px;
 
   p {
     display: flex;
@@ -197,6 +198,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: unset;
     width: 100%;
     height: 100%;
     padding: 0;

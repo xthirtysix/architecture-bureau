@@ -30,7 +30,7 @@ export default {
 
 .table-item {
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 30% 65%;
   grid-gap: 1.4rem;
   grid-template-areas: "position info";
   margin-bottom: 0.7rem;
@@ -39,6 +39,7 @@ export default {
 .position,
 .company {
   font-size: 1.1rem;
+  word-break: break-word;
 }
 
 .company {
