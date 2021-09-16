@@ -1,16 +1,25 @@
 <template lang="pug">
 .portfolio
-  h1.main-header Portfolio
+  h1.main-header.visually-hidden Portfolio
   ul.card-list
     li(v-for="(item, idx) in portfolio", :key="idx")
+      //info-card(v-if="item.type === 'Info'")(:item="item")
       portfolio-card(:item="item")
+  viewer(:images="images", @inited="inited", ref="viewer")
+    img(
+      v-for="(img, idx) in images",
+      :src="img.pathLong",
+      :key="idx",
+      style="display: none"
+    )
 </template>
 
 <script>
 import PortfolioCard from "../components/PortfolioCard.vue";
+import InfoCard from "../components/InfoCard.vue";
 
 export default {
-  components: { PortfolioCard },
+  components: { PortfolioCard, InfoCard },
   computed: {
     portfolio: function() {
       return this.$store.getters.portfolio;
@@ -26,13 +35,11 @@ export default {
 .portfolio {
   @include container;
   max-width: 1300px;
+  padding-top: 0;
 }
 
 .main-header {
-  @include main-header;
-  @include underline(100px, false);
-  position: relative;
-  margin-bottom: 2rem;
+  @include visually-hidden;
 }
 
 .card-list {

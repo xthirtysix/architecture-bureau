@@ -1,63 +1,27 @@
 <template lang="pug">
 .about
   .header-wrapper
-    h1.main-header
-      span.visually-hidden About&nbsp;
-      | Iana Moskalenko
-    span.profession(aria-label="profession") Architect
-  section.picture-container
-    h2.visually-hidden Picture of Iana Moskalenko
-    p
-      picture
-        source(
-          media="(max-width: 1199px)",
-          srcset="../assets/img/iana_moskalenko_mobile.jpg"
-          :src-placeholder="mobilePlaceholder"
-        )
-        v-lazy-image(
-          :src="picture",
-          :src-placeholder="placeholder",
-          width="490",
-          height="753",
-          alt="Iana Moskalenko"
-        )
-  section.experience
-    h2.section-header Experience
-    experience
-  section.education
-    h2.section-header Education
-    education
-  section.skills
-    h2.section-header Computer Skills
-    skills
-  section.certificates
-    h2.section-header Certificates
-    certificates
+    h1.section-header Услуги
+  section
+    span Проектирование архитектурных разделов в Revit (опыт работы наших архитекторов от 7 лет)
+    ul
+      li(v-for="(item, idx) in services", :key="idx")
+        span {{item}}
 </template>
 
 <script>
-import Certificates from "../components/Certificates.vue";
-import Education from "../components/Education.vue";
-import Experience from "../components/Experience.vue";
-import Skills from "../components/Skills.vue";
-import VLazyImage from "v-lazy-image";
-import picture from "../assets/img/iana_moskalenko.jpg";
-import placeholder from "../assets/img/placeholders/iana_moskalenko_placeholder.jpg";
-import mobilePlaceholder from "../assets/img/placeholders/iana_moskalenko_mobile_placeholder.jpg";
-
 export default {
-  components: {
-    Certificates,
-    Education,
-    Experience,
-    Skills,
-    VLazyImage
-  },
   data: function() {
     return {
-      picture,
-      placeholder,
-      mobilePlaceholder
+      services: [
+        "Разработка концепций",
+        "Адаптация концепций",
+        "Проектная документация",
+        "Рабочая документация",
+        "АГР, АГО (архитектурно-градостроительные решения/облика)",
+        "Архитектурные интерьеры",
+        "Визуализации"
+      ]
     };
   }
 };
@@ -74,12 +38,13 @@ export default {
   display: grid;
   grid-template-columns: 1fr;
   grid-column-gap: 1rem;
+  padding-top: 0;
   grid-template-areas:
-    "header picture"
-    "experience picture"
-    "education picture"
-    "skills skills"
-    "certificates certificates";
+    "header"
+    "experience"
+    "education"
+    "skills"
+    "certificates";
   max-width: 1300px;
 }
 
@@ -93,6 +58,7 @@ export default {
 
 .section-header {
   text-transform: uppercase;
+  margin-top: 0;
 }
 
 .profession {
@@ -135,19 +101,24 @@ export default {
 
 @media (min-width: $mobile) and (max-width: $tablet) {
   .about {
-    grid-template-columns: min-content 1fr;
+    grid-template-columns: 1fr;
     grid-template-areas:
-      "picture header"
-      "experience experience"
-      "education education"
-      "skills skills"
-      "certificates certificates";
+      "header"
+      "experience"
+      "education"
+      "skills"
+      "certificates";
     width: 100%;
+    padding-top: 0;
   }
 
   .header-wrapper {
     height: fit-content;
     align-self: center;
+  }
+
+  .section-header {
+    margin-top: 0;
   }
 
   .picture-container {
@@ -174,8 +145,12 @@ export default {
 }
 
 @media (max-width: $mobile) {
+  #navigation {
+    padding: 0 1rem;
+  }
   .about {
     grid-template-areas:
+      "header"
       "picture"
       "experience"
       "education"
@@ -190,9 +165,15 @@ export default {
     padding: 0 1rem;
   }
 
-  .header-wrapper {
-    display: none;
+  .section-header {
+    margin-top: 0;
   }
+
+  .header-wrapper {
+    padding: 0 1rem;
+    //display: none;
+  }
+
 
   .picture-container {
     display: flex;
