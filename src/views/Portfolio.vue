@@ -4,7 +4,7 @@
     ul.card-list
       li(v-for="(item, idx) in portfolio", :key="idx")
         portfolio-card(:item="item" @clicked="onClickChild")
-    viewer(:images="images", @inited="inited", ref="viewer")
+    viewer(:images="images", ref="viewer")
       img(
         v-for="(img, idx) in images",
         :src="img.pathLong",
@@ -15,29 +15,27 @@
 
 <script>
 import PortfolioCard from "../components/PortfolioCard.vue";
-import { component as Viewer } from "v-viewer"
+import VueViewer from "v-viewer";
+import Vue from "vue";
+Vue.use(VueViewer);
 
 export default {
-  components: {PortfolioCard, Viewer },
+  components: {
+    PortfolioCard
+  },
   computed: {
-    portfolio: function () {
+    portfolio: function() {
       return this.$store.getters.portfolio;
     }
   },
   data() {
     return {
       images: []
-    }
-  },
-  inited(viewer) {
-    this.$viewer = viewer;
+    };
   },
   methods: {
     onClickChild(value) {
-      console.log('Emmited: ', value)
       this.images = value;
-      console.log(this.images)
-      // this.images = [...value];
       this.$viewer.show();
     }
   }

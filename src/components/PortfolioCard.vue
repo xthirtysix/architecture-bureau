@@ -3,28 +3,18 @@
     .text-wrapper
       h3.card-header.card-main-header {{ item.name }}
       .container
+        h4.card-header.visually-hidden(v-if="item.activity") Локация
         p.card-paragraph(v-if="item.location") {{ item.location }}
-          span(v-if="item.acreage") {{ item.acreage }} m
+          span(v-if="item.acreage") &nbsp;{{ item.acreage }} м
             sup 2
       .container
-        h4.card-header(v-if="item.position") Position:
-        p.card-paragraph(v-if="item.position") {{ item.position }}
-      .container
-        h4.card-header(v-if="item.activity") Activity:
+        h4.card-header.visually-hidden(v-if="item.activity") Активность
         p.card-paragraph(v-if="item.activity") {{ item.activity }}
-        p.card-paragraph(v-if="item.studentWork") Student work, {{ item.studentWork }}
-    p.preview-container(v-tabindex, @click="show", v-on:keyup.enter="show")
+    p.preview-container(v-tabindex, @click="onImageClick", v-on:keyup.enter="onImageClick")
       img.preview-image(
         :src="item.preview",
         :alt="item.name"
       )
-      viewer(:images="images", @inited="inited", ref="viewer")
-        img(
-          v-for="(img, idx) in images",
-          :src="img.pathLong",
-          :key="idx",
-          style="display: none"
-        )
 </template>
 
 <script>
@@ -35,7 +25,6 @@ export default {
       name: { type: String },
       location: { type: String },
       acreage: { type: String },
-      position: { type: String },
       activity: { type: String },
       import: { type: Function }
     }
@@ -51,14 +40,11 @@ export default {
   methods: {
     importAll(r) {
       r.keys().forEach(key =>
-          this.images.push({ pathLong: r(key), pathShort: key })
+        this.images.push({ pathLong: r(key), pathShort: key })
       );
     },
-    inited(viewer) {
-      this.$viewer = viewer;
-    },
-    show() {
-      this.$viewer.show();
+    onImageClick() {
+      this.$emit("clicked", this.images);
     }
   },
   directives: {
