@@ -44,6 +44,7 @@ export default {
       );
     },
     onImageClick() {
+      console.log('>>.')
       this.$emit("clicked", this.images);
     }
   },
@@ -87,6 +88,8 @@ export default {
   z-index: 101;
   order: -1;
   overflow: hidden;
+  height: 0;
+  padding-bottom: 56%;
   margin: 0;
   line-height: 0;
   cursor: pointer;
@@ -111,6 +114,11 @@ export default {
   @include transition(1s);
 
   width: 100%;
+  width: -moz-available; /* WebKit игнор. */
+  // eslint-disable-next-line
+  width: -webkit-fill-available; /* Mozilla игнор. */
+  // eslint-disable-next-line
+  width: stretch;
   height: auto;
   background-color: $background-color-inversed;
 }
