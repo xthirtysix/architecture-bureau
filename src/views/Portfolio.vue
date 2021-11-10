@@ -1,28 +1,44 @@
 <template lang="pug">
-.portfolio
-  h1.main-header.visually-hidden Portfolio
-  ul.card-list
-    li(v-for="(item, idx) in portfolio", :key="idx")
-      //info-card(v-if="item.type === 'Info'")(:item="item")
-      portfolio-card(:item="item")
-  viewer(:images="images", @inited="inited", ref="viewer")
-    img(
-      v-for="(img, idx) in images",
-      :src="img.pathLong",
-      :key="idx",
-      style="display: none"
-    )
+  .portfolio
+    h1.main-header.visually-hidden Portfolio
+    ul.card-list
+      li(v-for="(item, idx) in portfolio", :key="idx")
+        portfolio-card(:item="item" @clicked="onClickChild")
+    viewer(:images="images", @inited="inited", ref="viewer")
+      img(
+        v-for="(img, idx) in images",
+        :src="img.pathLong",
+        :key="idx",
+        style="display: none"
+      )
 </template>
 
 <script>
 import PortfolioCard from "../components/PortfolioCard.vue";
-import InfoCard from "../components/InfoCard.vue";
+import { component as Viewer } from "v-viewer"
 
 export default {
-  components: { PortfolioCard, InfoCard },
+  components: {PortfolioCard, Viewer },
   computed: {
-    portfolio: function() {
+    portfolio: function () {
       return this.$store.getters.portfolio;
+    }
+  },
+  data() {
+    return {
+      images: []
+    }
+  },
+  inited(viewer) {
+    this.$viewer = viewer;
+  },
+  methods: {
+    onClickChild(value) {
+      console.log('Emmited: ', value)
+      this.images = value;
+      console.log(this.images)
+      // this.images = [...value];
+      this.$viewer.show();
     }
   }
 };
