@@ -1,19 +1,44 @@
 <template lang="pug">
-.portfolio
-  h1.main-header Portfolio
-  ul.card-list
-    li(v-for="(item, idx) in portfolio", :key="idx")
-      portfolio-card(:item="item")
+  .portfolio
+    h1.main-header.visually-hidden Portfolio
+    ul.card-list
+      li(v-for="(item, idx) in portfolio", :key="idx")
+        portfolio-card(:item="item" @clicked="onClickChild")
+    viewer(:images="images", @inited="inited", ref="viewer")
+      img(
+        v-for="(img, idx) in images",
+        :src="img.pathLong",
+        :key="idx",
+        style="display: none"
+      )
 </template>
 
 <script>
 import PortfolioCard from "../components/PortfolioCard.vue";
+import { component as Viewer } from "v-viewer"
 
 export default {
-  components: { PortfolioCard },
+  components: {PortfolioCard, Viewer },
   computed: {
-    portfolio: function() {
+    portfolio: function () {
       return this.$store.getters.portfolio;
+    }
+  },
+  data() {
+    return {
+      images: []
+    }
+  },
+  inited(viewer) {
+    this.$viewer = viewer;
+  },
+  methods: {
+    onClickChild(value) {
+      console.log('Emmited: ', value)
+      this.images = value;
+      console.log(this.images)
+      // this.images = [...value];
+      this.$viewer.show();
     }
   }
 };
@@ -26,13 +51,11 @@ export default {
 .portfolio {
   @include container;
   max-width: 1300px;
+  padding-top: 0;
 }
 
 .main-header {
-  @include main-header;
-  @include underline(100px, false);
-  position: relative;
-  margin-bottom: 2rem;
+  @include visually-hidden;
 }
 
 .card-list {

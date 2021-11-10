@@ -51,33 +51,37 @@
   &::before {
     @include transition(0.5s);
 
-    content: "click on image to open";
-    z-index: 100;
+    content: "";
+    z-index: 102;
     position: absolute;
     opacity: 0;
     top: 1rem;
     right: 1rem;
+    width: 1.6rem;
+    height: 1.6rem;
     padding: 0.3rem 0.5rem;
-    font-size: 1rem;
-    line-height: 1.2rem;
+    font-size: 3rem;
     background-color: white;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' class='svg-inline--fa fa-eye fa-w-18' data-icon='eye' data-prefix='fas' viewBox='0 0 576 512'%3E%3Cdefs/%3E%3Cpath fill='slategray' d='M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z'/%3E%3C/svg%3E");
+    background-size: 1.5rem;
+    background-repeat: no-repeat;
+    background-position: center;
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    pointer-events: all;
+    fill: #2c3e50;
   }
 
-  &:hover {
-    &:focus {
-      &::before {
+  &:hover,
+  &:focus {
+    &::before {
         display: block;
         opacity: 1;
       }
     }
-
-    .preview-image {
-      transform: scale(1.05);
-    }
   }
-}
+
+
 
 @mixin progressive-images {
   .v-lazy-image {
@@ -106,7 +110,7 @@
 
     content: "";
     position: absolute;
-    display: block;
+    display: none;
     @if $isAnimation == true {
       bottom: -0.5rem;
     } @else {

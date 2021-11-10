@@ -1,31 +1,30 @@
 <template lang="pug">
-article.card
-  .text-wrapper
-    h3.card-header.card-main-header {{ item.name }}
-    .container
-      p.card-paragraph(v-if="item.location") {{ item.location }}
-        span(v-if="item.acreage") {{ item.acreage }} m
-          sup 2
-    .container
-      h4.card-header(v-if="item.position") Position:
-      p.card-paragraph(v-if="item.position") {{ item.position }}
-    .container
-      h4.card-header(v-if="item.activity") Activity:
-      p.card-paragraph(v-if="item.activity") {{ item.activity }}
-      p.card-paragraph(v-if="item.studentWork") Student work, {{ item.studentWork }}
-  p.preview-container(v-tabindex, @click="show", v-on:keyup.enter="show")
-    v-lazy-image.preview-image(
-      :src="item.preview",
-      :src-placeholder="item.placeholder",
-      :alt="item.name"
-    )
-    viewer(:images="images", @inited="inited", ref="viewer")
-      img(
-        v-for="(img, idx) in images",
-        :src="img.pathLong",
-        :key="idx",
-        style="display: none"
+  article.card
+    .text-wrapper
+      h3.card-header.card-main-header {{ item.name }}
+      .container
+        p.card-paragraph(v-if="item.location") {{ item.location }}
+          span(v-if="item.acreage") {{ item.acreage }} m
+            sup 2
+      .container
+        h4.card-header(v-if="item.position") Position:
+        p.card-paragraph(v-if="item.position") {{ item.position }}
+      .container
+        h4.card-header(v-if="item.activity") Activity:
+        p.card-paragraph(v-if="item.activity") {{ item.activity }}
+        p.card-paragraph(v-if="item.studentWork") Student work, {{ item.studentWork }}
+    p.preview-container(v-tabindex, @click="show", v-on:keyup.enter="show")
+      img.preview-image(
+        :src="item.preview",
+        :alt="item.name"
       )
+      viewer(:images="images", @inited="inited", ref="viewer")
+        img(
+          v-for="(img, idx) in images",
+          :src="img.pathLong",
+          :key="idx",
+          style="display: none"
+        )
 </template>
 
 <script>
@@ -52,7 +51,7 @@ export default {
   methods: {
     importAll(r) {
       r.keys().forEach(key =>
-        this.images.push({ pathLong: r(key), pathShort: key })
+          this.images.push({ pathLong: r(key), pathShort: key })
       );
     },
     inited(viewer) {
@@ -79,7 +78,6 @@ export default {
 
 .card {
   @include interactive-with-shadow;
-  @include interactive-image-open-tip;
   @include transition(0.5s);
 
   display: flex;
@@ -99,12 +97,28 @@ export default {
 }
 
 .preview-container {
+  @include interactive-image-open-tip;
+  z-index: 101;
   order: -1;
   overflow: hidden;
   margin: 0;
   line-height: 0;
   cursor: pointer;
   outline: none;
+
+  &:hover {
+    .preview-image {
+      transform: scale(1.05);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .preview-container {
+    &::before {
+      opacity: 1;
+    }
+  }
 }
 
 .preview-image {
