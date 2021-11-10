@@ -44,7 +44,6 @@ export default {
       );
     },
     onImageClick() {
-      console.log('>>.')
       this.$emit("clicked", this.images);
     }
   },
