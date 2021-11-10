@@ -13,7 +13,7 @@
               span sf
               | @s-m.team
           li
-            a.contacts__item.contacts__item--phone(href='tel:+79265818159') +79265818159
+            a.contacts__item.contacts__item--phone(href='tel:+79265818159') +7 926 581 81 59
     #navigation
       ul.nav-list
         li
@@ -68,7 +68,7 @@ body {
 }
 
 .logo {
-  width: 100%;
+  width: auto;
   height: auto;
   margin: 0;
   font-weight: 400;
@@ -102,7 +102,7 @@ body {
 
 .contacts {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   margin-left: auto;
   line-height: 2rem;
 }
@@ -119,6 +119,7 @@ body {
   a {
     display: block;
     min-width: max-content;
+    line-height: 1.9rem;
     color: inherit;
     text-decoration: none;
   }
@@ -140,7 +141,7 @@ body {
   &::before {
     content: "";
     position: absolute;
-    top: calc(50% - 0.7rem);
+    top: calc(50% - 0.65rem);
     left: 0;
     display: block;
     width: 1rem;

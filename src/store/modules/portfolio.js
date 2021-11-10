@@ -8,7 +8,6 @@ export default {
         name: "Жилой комплекс «Первая Линия»",
         location: "Тюмень (Россия)",
         acreage: "52 000",
-        position: "Lead Architect",
         activity: "Концепция, Revit",
         images: require.context(
           "@/assets/img/portfolio/first_line/",
@@ -22,7 +21,6 @@ export default {
         name: "Жилой комплекс «Мой ритм»",
         location: "Казань (Россия)",
         acreage: "35 000",
-        position: "Lead Architect",
         activity:
           "Проектная документация (АР), Рабочая документация (АР), Revit (LOD400)",
         images: require.context(
@@ -37,7 +35,6 @@ export default {
         name: "Комплекс сценическо-постановочных средств киноконцерна Мосфильм",
         location: "Москва (Россия)",
         acreage: "20 000",
-        position: "Lead Architect",
         activity: "Рабочая документация (АР), Revit (LOD400)",
         images: require.context(
           "@/assets/img/portfolio/mosfilm_warehouse/",
@@ -51,7 +48,6 @@ export default {
         name: "Съемочный павильон киноконцерна Мосфильм",
         location: "Москва (Россия)",
         acreage: "20 000",
-        position: "Lead Architect",
         activity: "Рабочая документация (АР), Revit (LOD400)",
         images: require.context(
           "@/assets/img/portfolio/mosfilm_studio/",
@@ -65,7 +61,6 @@ export default {
         name: "Жилой комплекс «Басманный»",
         location: "Москва (Россия)",
         acreage: "35 000",
-        position: "Lead Architect",
         activity: "Рабочая документация (АР), Revit (LOD400)",
         images: require.context(
           "@/assets/img/portfolio/basmanny/",
@@ -79,7 +74,6 @@ export default {
         name: "Жилой комплекс «I'M Тверская»",
         location: "Москва (Россия)",
         acreage: "26 635",
-        position: "Lead Architect",
         activity: "Проектная документация (АР), AutoCAD",
         images: require.context(
           "@/assets/img/portfolio/im_tverskaya/",
@@ -93,7 +87,6 @@ export default {
         name: "Грузовой терминал Шереметьевао-Карго",
         location: "Москва (Россия)",
         acreage: "42 300",
-        position: "Architect",
         activity: "Рабочая документация, Revit, AutoCAD",
         images: require.context(
           "@/assets/img/portfolio/sheremetyevo/",
@@ -107,7 +100,6 @@ export default {
         name: "Бизнес-комплекс «Пилюгина»",
         location: "Москва (Россия)",
         acreage: "43 500",
-        position: "Architect",
         activity: "Рабочая документация (АР), AutoCAD",
         images: require.context(
           "@/assets/img/portfolio/pilyugina/",
@@ -122,9 +114,6 @@ export default {
   getters: {
     portfolio: function(state) {
       return state.works;
-    },
-    images2: function (state) {
-      return state.works[0].images;
     }
   }
 };
