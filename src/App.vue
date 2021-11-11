@@ -17,9 +17,9 @@
     #navigation
       ul.nav-list
         li
-          router-link.nav-link(to="/") Услуги
+          router-link.nav-link(to="/") Портфолио
         li
-          router-link.nav-link(to="/portfolio") Портфолио
+          router-link.nav-link(to="/services") Услуги
     #content
       router-view
 </template>
@@ -29,6 +29,13 @@
 @import "@/styles/fonts.scss";
 
 @include visually-hidden;
+
+@media screen and (min-width: 960px) {
+  html {
+    margin-left: calc(100vw - 100%);
+    margin-right: 0;
+  }
+}
 
 body {
   margin: 0;
@@ -59,7 +66,7 @@ body {
   width: 100%;
   max-width: calc(1300px - 4rem);
   margin: 0 auto 2rem;
-  padding: 1.4rem 1rem;
+  padding: 1.4rem 1rem 1.8rem;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   color: $foreground-color-inversed;
@@ -104,6 +111,7 @@ body {
   display: flex;
   align-items: flex-end;
   margin-left: auto;
+  margin-right: 0.5rem;
   line-height: 2rem;
 }
 
