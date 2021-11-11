@@ -30,6 +30,13 @@
 
 @include visually-hidden;
 
+@media screen and (min-width: 960px) {
+  html {
+    margin-left: calc(100vw - 100%);
+    margin-right: 0;
+  }
+}
+
 body {
   margin: 0;
   background-color: $background-color;
