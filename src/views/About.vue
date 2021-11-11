@@ -174,7 +174,6 @@ export default {
     //display: none;
   }
 
-
   .picture-container {
     display: flex;
     justify-content: center;
@@ -187,7 +186,6 @@ export default {
 
     p {
       @include with-shadow-circle;
-
       position: relative;
       margin: 0;
       box-shadow: none;
